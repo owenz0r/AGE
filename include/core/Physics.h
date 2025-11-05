@@ -6,6 +6,11 @@
 #include <string>
 #include <vector>
 
+#ifdef _WIN32
+	#undef max
+	#undef min
+#endif
+
 namespace age
 {
 	struct CollisionPair
