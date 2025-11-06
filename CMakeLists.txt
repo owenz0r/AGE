@@ -84,3 +84,13 @@ endif()
 
 add_executable(AGE_test ${CMAKE_CURRENT_SOURCE_DIR}/source/libAGE_test.cpp)
 target_link_libraries(AGE_test PRIVATE AGE)
+
+if(WIN32)
+	install(FILES
+		${CMAKE_CURRENT_SOURCE_DIR}/lib/win/SDL2.dll
+		${CMAKE_CURRENT_SOURCE_DIR}/lib/win/SDL2_image.dll
+		${CMAKE_CURRENT_SOURCE_DIR}/lib/win/SDL2_mixer.dll
+		${CMAKE_CURRENT_SOURCE_DIR}/lib/win/SDL2_ttf.dll
+		DESTINATION .
+	)
+endif()
