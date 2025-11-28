@@ -4,6 +4,7 @@
 #include "core/Renderer.h"
 #include "core/ResourceManager.h"
 #include "core/Screen.h"
+#include "core/Engine.h"
 
 #include <iostream>
 

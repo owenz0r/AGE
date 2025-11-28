@@ -1,10 +1,10 @@
-#include "core/Engine.h"
 #include "SDL/SDLAudio.h"
 #include "SDL/SDLDefaultScreen.h"
 #include "SDL/SDLInput.h"
 #include "SDL/SDLRenderer.h"
 #include "SDL/SDLResourceManager.h"
 #include "SDL/SDLWindow.h"
+#include "core/Engine.h"
 #include "core/Physics.h"
 #include "core/Screen.h"
 #include "core/globals.h"
@@ -29,7 +29,7 @@ namespace age
 
 	void Engine::_TimeStep()
 	{
-		auto newTime = Clock::now();
+		auto newTime = std::chrono::steady_clock::now();
 		std::chrono::duration<double> ft = newTime - m_currentTime;
 		double frameTime = ft.count();
 		m_currentTime = newTime;
@@ -93,7 +93,7 @@ namespace age
 			m_activeScreen->Init();
 		}
 
-		m_currentTime = Clock::now();
+		m_currentTime = std::chrono::steady_clock::now();
 		srand(static_cast<unsigned>(time(nullptr)));
 
 		while (!m_quit)
@@ -147,6 +147,8 @@ namespace age
 	void Engine::SetActiveScreen(std::string name)
 	{
 		if (InitializeScreen(m_screenMap[name]))
+    {
 			m_activeScreen = m_screenMap[name];
+    }
 	}
 } // namespace age

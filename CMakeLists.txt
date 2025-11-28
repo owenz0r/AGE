@@ -33,6 +33,12 @@ elseif(APPLE)
 	target_link_libraries(AGE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/mac/libSDL2_ttf.dylib)
 	target_link_libraries(AGE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/mac/libSDL2_image.dylib)
 	target_link_libraries(AGE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/mac/libSDL2_mixer.dylib)
+elseif(UNIX)
+	target_link_libraries(AGE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2main.a)
+	target_link_libraries(AGE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2-2.0.so.0)
+	target_link_libraries(AGE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2_ttf-2.0.so.0)
+	target_link_libraries(AGE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2_image-2.0.so.0)
+	target_link_libraries(AGE PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2_mixer-2.0.so.0)
 endif()
 
 #function(copy_per_config_dlls TARGET DLL_MAPPINGS)
@@ -91,6 +97,14 @@ if(WIN32)
 		${CMAKE_CURRENT_SOURCE_DIR}/lib/win/SDL2_image.dll
 		${CMAKE_CURRENT_SOURCE_DIR}/lib/win/SDL2_mixer.dll
 		${CMAKE_CURRENT_SOURCE_DIR}/lib/win/SDL2_ttf.dll
+		DESTINATION .
+	)
+elseif(UNIX AND NOT APPLE)
+	install(FILES
+		${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2-2.0.so.0
+		${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2_image-2.0.so.0
+		${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2_mixer-2.0.so.0
+		${CMAKE_CURRENT_SOURCE_DIR}/lib/linux/libSDL2_ttf-2.0.so.0
 		DESTINATION .
 	)
 endif()

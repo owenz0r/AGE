@@ -15,7 +15,7 @@ namespace age
 	class Physics;
 	class ResourceManager;
 
-	typedef std::chrono::high_resolution_clock Clock;
+	typedef std::chrono::steady_clock Clock;
 
 	class Engine
 	{
@@ -53,7 +53,7 @@ namespace age
 		Screen* m_activeScreen = nullptr;
 		std::unordered_map<std::string, Screen*> m_screenMap;
 
-		std::chrono::steady_clock::time_point m_currentTime = Clock::now();
+		std::chrono::steady_clock::time_point m_currentTime = std::chrono::steady_clock::now();
 
 		double tickRate = 1.0 / 60.0;
 	};

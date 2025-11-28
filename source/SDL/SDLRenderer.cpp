@@ -251,7 +251,10 @@ namespace age
 
 		m_renderer.reset(SDL_CreateRenderer(window->GetInternal(), -1, SDL_RENDERER_ACCELERATED));
 		if (m_renderer == nullptr)
+    {
+      std::cout << "SDL Renderer Init Internal failed" << std::endl;
 			return false;
+    }
 
 		return true;
 	}

@@ -1,4 +1,4 @@
-#include "Core/EmitterComponentManager.h"
+#include "core/EmitterComponentManager.h"
 
 namespace age
 {

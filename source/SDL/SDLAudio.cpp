@@ -10,7 +10,7 @@ namespace age
 	{
 		if (SDL_Init(SDL_INIT_AUDIO) < 0)
 		{
-			std::cout << "SDL couldn't init video" << std::endl;
+			std::cout << "SDL couldn't init audio" << std::endl;
 			return false;
 		}
 		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
