@@ -10,6 +10,8 @@
 #include <windows.h>
 #elif defined(__APPLE__)
 #include <mach-o/dyld.h>
+#include <CoreFoundation/CoreFoundation.h>
+#include <limits.h>
 #elif defined(__linux__)
 #include <unistd.h>
 #else
@@ -506,4 +508,18 @@ namespace age
 		return exePath;
 	}
 
+#if defined(__APPLE__)
+	inline std::string getResourcesPath()
+	{
+		CFURLRef url =
+		CFBundleCopyResourcesDirectoryURL(CFBundleGetMainBundle());
+		
+		char path[PATH_MAX];
+		CFURLGetFileSystemRepresentation(
+										 url, true, reinterpret_cast<UInt8*>(path), PATH_MAX);
+		
+		CFRelease(url);
+		return path;
+	}
+#endif
 } // namespace age
