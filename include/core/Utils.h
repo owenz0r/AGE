@@ -521,5 +521,10 @@ namespace age
 		CFRelease(url);
 		return path;
 	}
+#else
+	inline std::filesystem::path getResourcesPath()
+	{
+		return getExecutablePath().parent_path() / "Resources";
+	}
 #endif
 } // namespace age
